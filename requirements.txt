@@ -5,3 +5,5 @@ cryptography
 pyrofork
 python-dotenv
 tgcrypto
+uvloop
+pymongo

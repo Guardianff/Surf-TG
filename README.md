@@ -1,6 +1,6 @@
 <div align="center">
-    <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/logo.png" alt="Surf_TG" style="height:10%; width:40%;">
-    <h3>Python Web App which Indexes a Your Telegram Channel and Serves its Files for Download and Stream.</h3>
+    <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/logo.png" alt="Surf_TG" style="height:20%; width:50%;"><br>
+    <i>Python Web App which Indexes a Your Telegram Channel and Serves its Files for Download and Stream.</i>
 </div>
 
 
@@ -14,26 +14,26 @@
 
 
 
-## Features 📑
+## ***Features*** 📑
 
 - Multi Channel Index 📡
-- Thumbnail Support 🖼️
+- Thumbnail Support (Channel Profile) 🖼️
 - Search Support 🔍
 - Login support 🔐
 - Faster Resumeable Download Link ⏩
 - Stream Video Support 📺
-- 25 Website Theme (Bootswatch) 🎨
-
-### To-Do
-
-- API Support 🛠️
-- Database Support 💾
+- 25 Website Themes (Bootswatch) 🎨
 - Playlist Creator Support 📀
+- Database Support 💾
+- Cache System 🔄
 
-## Screenshots
+### ***To-Do*** 📦
 
-Demo Url https://surftg-d5bc40cb110d.herokuapp.com/
-<br>(username: admin | password: admin)
+- [ ] API Support 🛠️
+- [ ] Admin Pannel Support 👑
+
+## ***Website Screenshots*** 🌐
+
 
 <div style="overflow-x: auto; white-space: nowrap;">
   <img src="https://graph.org/file/67c1500ecd0b9eb3a5700.png" style="width: 400px; display: inline-block; margin-right: 10px;" />
@@ -43,7 +43,7 @@ Demo Url https://surftg-d5bc40cb110d.herokuapp.com/
 </div>
 
 
-## Setting Up Environment Variables
+## ***Environment Variables*** 🪧
 
 To run this Surf-TG, you will need to add the following environment variables to your config.env file.
 
@@ -56,35 +56,40 @@ To run this Surf-TG, you will need to add the following environment variables to
 | `API_HASH` (required) | Telegram api_hash obtained from https://my.telegram.org/apps. `str`
 | `BOT_TOKEN` (required) | The Telegram Bot Token that you got from @BotFather `str`
 | `AUTH_CHANNEL` (required) | Chat_ID of the Channel you are using for index (Seperate Multiple Channel By `,` eg- `-100726731829, -10022121832`). `int`
-| `SESSION_STRING` (required) | Use same account which is a participant of the `AUTH_CHANNEL`. `str`
+| `SESSION_STRING` (required) | Use same account which is a participant of the `AUTH_CHANNEL` Use this [Tool](https://github.com/weebzone/Surf-TG/tree/main#generate-session-string) to generate Session String. `str`
+| `DATABASE_URL` (required) | Your Mongo Database URL (Connection string). Follow this [Guide](https://github.com/weebzone/Surf-TG/tree/main#generate-database-) to generate database. `str`
 | `BASE_URL` (required) | Valid BASE URL where the bot is deployed. Format of URL should be `http://myip`, where myip is the IP/Domain(public) of your bot. For `Heroku` use `App Url`. `str`
 | `PORT` | Port on which app should listen to, defaults to `8080`. `int`
 | `USERNAME` | default  username is `admin`. `str`
 | `PASSWORD` | default  password is `admin`. `str`
+| `ADMIN_USERNAME` | Set the admin username so that the admin can log in to [Playlist Creator](https://github.com/weebzone/Surf-TG/tree/main#playlist-creator-). Make it different from `USERNAME`. The default admin username is `surfTG`. `str`
+| `ADMIN_PASSWORD` | Set the admin password so that the admin can log in to [Playlist Creator](https://github.com/weebzone/Surf-TG/tree/main#playlist-creator-). Make it different from `PASSWORD`. The default admin password is `surfTG`. `str`
 | `SLEEP_THRESHOLD` | Set a sleep threshold for flood wait exceptions, defaut is `60`. `int`
 | `WORKERS` | Number of maximum concurrent workers for handling incoming updates, default is `10`. `int`
-| `MULTI_CLIENT` | Enable multi bot token for handing incoming updates, default is `False`. `bool`
+| `MULTI_TOKEN*` | Multi bot token for handing incoming updates. (*)asterisk represents any interger starting from 1. `str`
 | `THEME` | Choose any Bootswatch theme for UI, Default is `flatly`. `str`
+| `MULTI_CLIENT` | Set this `True` if using `MULTI_TOKEN`, Default is `False`. `bool`
+| `HIDE_CHANNEL` | Set this `True` to hide the Channel Card in Public Web, Default is `False`. `bool`
+| `USE_CACHE` | Set this `True` to use the cache system. It will decrease the load on `Session String`, Default is `True`. `bool`
 
-
-### Themes
+## ***Themes*** 🎨
 
 * There are 25 Themes from [bootswatch](https://github.com/thomaspark/bootswatch) official [Bootstrap](https://getbootstrap.com) Themes.
 * You can check Theme from [bootswatch.com](https://bootswatch.com) before selecting.
 * To Change theme, Set Appropriate Theme name in `Theme` Variable.
 
-| Themes    |         |         |         |        |          |
-|-----------|---------|---------|---------|--------|----------|
+| **Themes**|         |         |         |        |          |
+|:---------:|:-------:|:-------:|:-------:|:------:|:--------:|
 | cerulean  | cosmo   | cyborg  | darkly  | flatly | journal  |
 | litera    | lumen   | lux     | materia | minty  | pulse    |
 | sandstone | simplex | sketchy | slate   | solar  | spacelab |
 | superhero | united  | yeti    | vapor   | morph  | quartz   |    
 | zephyr    |
 
-### Use Multiple Bots to speed up
+### ***Multiple Bots*** 🚀 (Speed Booster)
 
 > [!NOTE]
-> **What it multi-client feature and what it does?** <br>
+> **What it multi-client feature and what it does?** <br><br>
 > This feature shares the Telegram API requests between worker bots to speed up download speed when many users are using the server and to avoid the flood limits that are set by Telegram. <br>
 
 > [!NOTE]
@@ -93,7 +98,6 @@ To run this Surf-TG, you will need to add the following environment variables to
 To enable multi-client, generate new bot tokens and add it as your `config.env` with the following key names. 
 
 `MULTI_TOKEN1`: Add your first bot token here.
-
 `MULTI_TOKEN2`: Add your second bot token here.
 
 you may also add as many as bots you want. (max limit is 50)
@@ -102,27 +106,54 @@ you may also add as many as bots you want. (max limit is 50)
 > [!WARNING]
 > Don't forget to add all these worker bots to the `AUTH_CHANNEL` for the proper functioning
 
+
+### ***Generate Database*** 💾
+
+> [!NOTE]
+> **Why Database is Required** <br><br>
+> In Playlist Creator, the folder and file data are stored. As of now, the session string is not required in Surf-TG, so to store these files, the database is necessary. <br>
+
+
+1. Go to `https://mongodb.com/` and sign-up.
+2. Create Shared Cluster.
+3. Press on `Database` under `Deployment` Header, your created cluster will be there.
+5. Press on connect, choose `Allow Access From Anywhere` and press on `Add IP Address` without editing the ip, then
+   create user.
+6. After creating user press on `Choose a connection`, then press on `Connect your application`. Choose `Driver` 
+   **python** and `version` **3.6 or later**.
+7. Copy your `connection string` and replace `<password>` with the password of your user, then press close.
+
 ### Generate Session String 
 
 > [!NOTE]
-> **Why Session String is needed?** <br>
+> **Why Session String is needed?** <br><br>
 > The session string is required to fetch files from the `AUTH_CHANNEL` due to a restriction in the Telegram API. Only users are allowed to fetch files from channels; bots cannot do so.
 
 > [!NOTE]
-> **Make Sure that you have to Generate the `Pyrogram Session String`**
+> **Make Sure that you have to Generate the `Pyrofork Session String`**
 
-To generate the Session String use this [Colab Tool](https://colab.research.google.com/drive/1u4F2CtYU_Q3_rWfjYtt1IvRJfNKmBKyM)
+To generate the Session String use this [Colab Tool](https://colab.research.google.com/drive/1F3cRAdgvFSenOoVSxJFxP-356pE4sWOL)
 
+
+### ***Playlist Creator*** 📀
+
+> [!NOTE]
+> **Login With `ADMIN_USERNAME` and `ADMIN_PASSWORD`** <br><br>
+
+- 📁 Create Folder/Subfolder
+- ✏️ Edit the Folder Name
+- 🖼️ Edit the Folder Thumbnail
+- 📥 Directly Store File in folder from `AUTH_CHANNEL`
+- 🔍 Search Support of file in Playlist folder (limited to the folder which is open in the browser)
+- ✏️ Edit Filename of File
+- 🖼️ Edit Thumbnail of File
 
 ## Deployment
 
 <i>Either you could locally host, VPS, or deploy on [Heroku](https://heroku.com)</i>
 
 
-
-
 ### Deploy Locally:
-
 
 ```sh
 git clone https://github.com/weebzone/Surf-TG
@@ -180,6 +211,32 @@ sudo docker stop id
 Easily Deploy to Heroku use this [Colab Tool](https://colab.research.google.com/drive/1R5YBUg8TINgxAm4Hvejjy0VgsKGmb8vV)
 
 
+## FAQ 🤔
+
+#### Question 1:  Is a session string required in Surf-TG?
+
+Answer: Yes, it is required. and generate session string by `Phone Number` not by bot token and use the `pyrofork` mode.
+
+**Question 2: How are posts updated on the web when using cache?**
+
+**Answer:** Login with `ADMIN_USERNAME` and `ADMIN_PASSWORD`, then clicking the reload option in the Homepage navbar clears all channel caches, to showing new posts. To clear a specific channel's cache, open the channel and click its reload option.
+
+**Question 3: How to change theme and add/remove Channel without restart?**
+
+**Answer:** Login with `ADMIN_USERNAME` and `ADMIN_PASSWORD`, then clicking the Edit option in the Homepage navbar from there you can change theme and add/remove channel. Make sure that channel must be seperated by `,`
+
+#### Question 4: Can anyone create or edit folders/files in Playlist Creator?
+
+Answer: No, only admins with `ADMIN_USERNAME` and `ADMIN_PASSWORD` can log in to Playlist Creator.
+
+#### Question 5: If i delete the mongoDb database then my playlist also deleted?
+
+Answer: Yes, Your all the playlist will be deleted.
+
+#### Question 6: If i delete the file from `AUTH_CHANNEL` still then it will be played in Surf-TG?
+
+Answer: No, Once the file is deleted it will be no more playable.
+
 ## Contributing
 
 Feel free to contribute to this project if you have any further ideas
@@ -188,13 +245,13 @@ Feel free to contribute to this project if you have any further ideas
 
 - [@TechShreyash](https://github.com/TechShreyash) for [TechZIndex](https://github.com/TechShreyash/TechZIndex) Base repo
 
-## Contact me
+## **Contact Info**
 
-[![Telegram Username](https://img.shields.io/static/v1?label=&message=Telegram%20&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=violet)](https://t.me/krn_adhikari)
+[![Telegram Username](https://img.shields.io/static/v1?label=&message=Telegram%20&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=black)](https://t.me/krn_adhikari)
 
-## Copyright
+## **Copyright** ©️ 
 
-Copyright (C) 2024 [Weebzone](https://github.com/weebzone) under [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html).
+Copyright (C) 2024-present [Weebzone](https://github.com/weebzone) under [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
 Surf-TG is Free Software: You can use, study share and improve it at your
 will. Specifically you can redistribute and/or modify it under the terms of the
